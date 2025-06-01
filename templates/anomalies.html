@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anomaly Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; }
+        .alert {
+            background: #ffe6e6;
+            color: #990000;
+            border-left: 6px solid #ff4d4d;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background: #f2f2f2; }
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Anomaly Detected in Employee Data</h2>
+    <div class="alert">
+        Some employees were excluded from payslip generation due to unusual salary configurations.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                {% for col in anomalies.columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in anomalies.values %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/employees" class="button">Back to Employee List</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { padding: 8px 12px; border: 1px solid #ccc; text-align: center; }
+        th { background-color: #f2f2f2; }
+        a.button {
+            padding: 6px 10px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0 3px;
+        }
+        a.button.edit { background: #28a745; }
+        a.button.delete { background: #dc3545; }
+        a.button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <h2>Employee List</h2>
+
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Email</th><th>Basic</th><th>HRA</th><th>Allowance</th><th>PF%</th><th>Tax%</th><th>Actions</th>
+        </tr>
+        {% for emp in employees %}
+        <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.basic }}</td>
+            <td>{{ emp.hra }}</td>
+            <td>{{ emp.allowance }}</td>
+            <td>{{ emp['pf'] }}</td>
+            <td>{{ emp['tax'] }}</td>
+            <td>
+                <a class="button edit" href="/edit/{{ emp.id }}">Edit</a>
+                <a class="button delete" href="/delete/{{ emp.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/add" class="button">Add New Employee</a>
+    <a href="/generate" class="button" style="background: #17a2b8;">Generate Payslips</a>
+</body>
+</html>

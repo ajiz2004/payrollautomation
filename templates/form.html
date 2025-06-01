@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Edit' if employee else 'Add' }} Employee</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { max-width: 400px; margin: auto; }
+        label, input { display: block; width: 100%; margin-bottom: 10px; }
+        button { padding: 10px 15px; background: #0066cc; color: white; border: none; cursor: pointer; }
+        button:hover { background: #004c99; }
+    </style>
+</head>
+<body>
+    <h2>{{ 'Edit' if employee else 'Add' }} Employee</h2>
+    <form method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required value="{{ employee[1] if employee else '' }}">
+
+        <label>Email:</label>
+        <input type="email" name="email" required value="{{ employee[2] if employee else '' }}">
+
+        <label>Basic Salary:</label>
+        <input type="number" name="basic" required value="{{ employee[3] if employee else '' }}">
+
+        <label>HRA:</label>
+        <input type="number" name="hra" required value="{{ employee[4] if employee else '' }}">
+
+        <label>Allowance:</label>
+        <input type="number" name="allowance" required value="{{ employee[5] if employee else '' }}">
+
+        <label>PF %:</label>
+        <input type="number" name="pf" required value="{{ employee[6] if employee else 12 }}">
+
+        <label>Tax %:</label>
+        <input type="number" name="tax" required value="{{ employee[7] if employee else 10 }}">
+
+        <button type="submit">{{ 'Update' if employee else 'Add' }}</button>
+    </form>
+    <p><a href="/employees">Back to Employee List</a></p>
+</body>
+</html>
